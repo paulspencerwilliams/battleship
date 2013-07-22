@@ -1,13 +1,8 @@
-require_relative "board"
-require_relative "board_analyser"
-require_relative "memory"
-require_relative "random_coord_strategy"
-require_relative "destroy_ship_strategy"
-require_relative "ship"
 
 class PaulPlayer
 
   def name
+    "Paul"
   end
 
   def new_game
