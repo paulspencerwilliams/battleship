@@ -15,30 +15,31 @@ describe PaulPlayer do
 
   describe "when invited to take turn" do
     let (:strategy)        {double("strategy")}
-    let (:suggested_coord) {double("suggested coord")}
-    let (:last_turn)       {double("last_turn")}
+    let (:suggestion)      {double("suggested coord")}
+    let (:memory)          {double("memory")}
     let (:state)           {double("state")}
+    let (:last_coord)      {double("last coord")}
     let (:ships_remaining) {double("ships remaining")}
 
-    subject {PaulPlayer.new(strategy, last_turn)}
+    subject {PaulPlayer.new(strategy, memory)}
 
     before (:each) do
-      strategy.stub(:suggest_next).and_return(suggested_coord)
-      last_turn.stub(:remember_turn) 
+      memory.stub(:last_coord).and_return(last_coord)
+      memory.stub(:remember_turn) 
+      strategy.stub(:suggest_next).and_return(suggestion)
     end
 
-
     it "should ask strategy for suggestion based on last turn" do
-      strategy.should_receive(:suggest_next).with(last_turn, state)
+      strategy.should_receive(:suggest_next).with(last_coord, state)
       subject.take_turn(state, ships_remaining)
     end
 
     it "should return the suggested coord" do
-      subject.take_turn(state, ships_remaining).should eq(suggested_coord)
+      subject.take_turn(state, ships_remaining).should eq(suggestion)
     end
 
-    it "should remember turn" do
-      last_turn.should_receive(:remember_turn).with(suggested_coord)
+    it "should remember the suggest" do
+      memory.should_receive(:remember_turn).with(suggestion)
       subject.take_turn(state, ships_remaining)
     end
 
