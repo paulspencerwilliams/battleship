@@ -1,0 +1,2 @@
+class LastTurn
+end

@@ -1,3 +1,8 @@
+require_relative "strategy"
+require_relative "randomizer"
+require_relative "last_turn"
+require_relative "priority_cells"
+
 class PaulPlayer
   def initialize(strategy = Strategy.new, last_turn = LastTurn.new)
     @strategy = strategy
@@ -25,3 +30,4 @@ class PaulPlayer
   end
 
 end
+
