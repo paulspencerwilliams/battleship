@@ -11,7 +11,7 @@ describe Strategy do
 
   context "when asked first time in a game" do
     before (:each) do
-      priority_cells.stub(:suggestions?).and_return(false)
+      priority_cells.stub(:suggest_next).with(state).and_return(nil)
       randomizer.stub(:suggest_next).with(state).and_return(suggestion)
     end
 
@@ -30,7 +30,7 @@ describe Strategy do
 
     context "and priority cells remains empty" do
       before (:each) do
-        priority_cells.stub(:suggestions?).and_return(false)
+        priority_cells.stub(:suggest_next).with(state).and_return(nil)
         randomizer.stub(:suggest_next).with(state).and_return(suggestion)
       end
 
@@ -46,7 +46,6 @@ describe Strategy do
 
     context "and priority cells has suggestions" do
       before (:each) do
-        priority_cells.stub(:suggestions?).and_return(true)
         priority_cells.stub(:suggest_next).with(state).and_return(suggestion)
       end
 
@@ -68,7 +67,7 @@ describe Strategy do
 
     context "and priority cells is empty" do
       before (:each) do
-        priority_cells.stub(:suggestions?).and_return(false)
+        priority_cells.stub(:suggest_next).with(state).and_return(nil)
         randomizer.stub(:suggest_next).with(state).and_return(suggestion)
       end
 
@@ -79,7 +78,6 @@ describe Strategy do
 
     context "and priority cells has cells" do
       before (:each) do
-        priority_cells.stub(:suggestions?).and_return(true)
         priority_cells.stub(:suggest_next).with(state).and_return(suggestion)
       end
 
