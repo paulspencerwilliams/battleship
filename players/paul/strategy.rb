@@ -6,7 +6,11 @@ class Strategy
   end
 
   def suggest_next(last_turn, state)
-    if last_turn.hit?(state) then @priority_cells.add_hit(last_turn, state) end
+    unless last_turn.nil?
+      if last_turn.hit?(state) 
+        @priority_cells.add_hit(last_turn, state) 
+      end
+    end
 
     if @priority_cells.suggestions?
       @priority_cells.suggest_next(state)

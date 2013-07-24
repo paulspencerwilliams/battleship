@@ -1,6 +1,7 @@
 require_relative "strategy"
 require_relative "memory"
 require_relative "randomizer"
+require_relative "priority_cells"
 
 class PaulPlayer
   def initialize(strategy = Strategy.new, memory = Memory.new)

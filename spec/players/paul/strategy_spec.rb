@@ -9,8 +9,21 @@ describe Strategy do
   let (:last_coord)     {double("last_coord")}
   subject               {Strategy.new(priority_cells, randomizer)}
 
+  context "when asked first time in a game" do
+    before (:each) do
+      priority_cells.stub(:suggestions?).and_return(false)
+      randomizer.stub(:suggest_next).with(state).and_return(suggestion)
+    end
+
+    it "returns random cell from randomizer" do
+      subject.suggest_next(nil, state).should eq(suggestion)
+    end
+
+  end
+
   context "when last turn hits a ship" do
     before (:each) do
+      last_coord.stub(:nil).and_return(false)
       last_coord.stub(:hit?).with(state).and_return(true)
       priority_cells.stub(:add_hit)
     end
