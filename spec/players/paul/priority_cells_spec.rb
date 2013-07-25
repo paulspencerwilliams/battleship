@@ -3,7 +3,7 @@ require "spec_helper"
 describe PriorityCells do
 
   let (:stack) {double("stack")}
-  let (:state) {Array.new(10) { Array.new(10)}}
+  let (:state) {Array.new(10) { Array.new(10) {:unknown}}}
   subject      {PriorityCells.new(stack)}
 
   describe "when registering a hit" do
@@ -59,6 +59,30 @@ describe PriorityCells do
         state[6][5] = :hit
         state[5][6] = :hit
         state[4][5] = :hit
+      end
+      it "should not add a northern neighbour that's already hit" do
+        stack.should_not_receive(:push).with([5,4])
+        subject.add_hit(Coord.new(5,5), state)
+      end
+      it "should not add a eastern neighbour that's already hit" do
+        stack.should_not_receive(:push).with([6,5])
+        subject.add_hit(Coord.new(5,5), state)
+      end
+      it "should not add a southern neighbour that's already hit" do
+        stack.should_not_receive(:push).with([5,6])
+        subject.add_hit(Coord.new(5,5), state)
+      end
+      it "should not add a western neighbour that's already hit" do
+        stack.should_not_receive(:push).with([4,5])
+        subject.add_hit(Coord.new(5,5), state)
+      end
+    end
+    context "when neighbour is miss" do
+      before (:each) do
+        state[5][4] = :miss
+        state[6][5] = :miss
+        state[5][6] = :miss
+        state[4][5] = :miss
       end
       it "should not add a northern neighbour that's already hit" do
         stack.should_not_receive(:push).with([5,4])
