@@ -12,7 +12,7 @@ class Strategy
       end
     end
 
-    suggestion =  @priority_cells.suggest_next(state)
+    suggestion =  @priority_cells.suggest_next
     if suggestion.nil?
       @randomizer.suggest_next(state)
     else

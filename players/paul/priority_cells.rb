@@ -28,5 +28,9 @@ class PriorityCells
     end
   end
 
+  def suggest_next
+    @stack.pop
+  end
+
 end
 

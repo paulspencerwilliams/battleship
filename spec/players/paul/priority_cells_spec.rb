@@ -102,4 +102,20 @@ describe PriorityCells do
       end
     end
   end
+  describe "when asked to suggest next" do
+    context "and there are suggestions" do
+      let (:suggestion) {double("suggestion")}
+      it "should return top of suggestion stack" do
+        stack.stub(:pop).and_return(suggestion)
+        subject.suggest_next.should eq(suggestion)
+      end
+    end
+
+    context "and there are no suggestions" do
+      it "should return nil" do
+        stack.stub(:pop).and_return(nil)
+        subject.suggest_next.should be_nil
+      end
+    end
+  end
 end
