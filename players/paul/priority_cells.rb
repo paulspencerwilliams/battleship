@@ -1,12 +1,3 @@
-class Coord
-  attr_accessor :x, :y
-
-  def initialize (x, y)
-    @x = x
-    @y = y
-  end
-end
-
 class PriorityCells
 
   def initialize(stack = Array.new)
@@ -31,6 +22,8 @@ class PriorityCells
   def suggest_next
     @stack.pop
   end
+  
+  private :add_coord_to_stack
 
 end
 

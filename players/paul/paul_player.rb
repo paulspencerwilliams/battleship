@@ -2,6 +2,7 @@ require_relative "strategy"
 require_relative "memory"
 require_relative "randomizer"
 require_relative "priority_cells"
+require_relative "suggestion"
 
 class PaulPlayer
   def initialize(strategy = Strategy.new, memory = Memory.new)
@@ -26,7 +27,7 @@ class PaulPlayer
   def take_turn(state, ships_remaining)
     suggestion = @strategy.suggest_next(@memory.last_coord, state)
     @memory.remember_turn(suggestion)
-    suggestion
+    suggestion.coord
   end
 
 end

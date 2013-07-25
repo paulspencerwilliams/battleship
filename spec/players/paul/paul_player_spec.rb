@@ -15,7 +15,8 @@ describe PaulPlayer do
 
   describe "when invited to take turn" do
     let (:strategy)        {double("strategy")}
-    let (:suggestion)      {double("suggested coord")}
+    let (:suggestion)      {double("suggested")}
+    let (:coord)           {double("coord")}
     let (:memory)          {double("memory")}
     let (:state)           {double("state")}
     let (:last_coord)      {double("last coord")}
@@ -26,6 +27,7 @@ describe PaulPlayer do
     before (:each) do
       memory.stub(:last_coord).and_return(last_coord)
       memory.stub(:remember_turn) 
+      suggestion.stub(:coord).and_return(coord)
       strategy.stub(:suggest_next).and_return(suggestion)
     end
 
@@ -35,7 +37,7 @@ describe PaulPlayer do
     end
 
     it "should return the suggested coord" do
-      subject.take_turn(state, ships_remaining).should eq(suggestion)
+      subject.take_turn(state, ships_remaining).should eq(coord)
     end
 
     it "should remember the suggest" do

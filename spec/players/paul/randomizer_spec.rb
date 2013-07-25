@@ -8,9 +8,10 @@ describe Randomizer do
     it "repeatedly returns suggestions with unknown state" do 
       100.times do  
         coord = subject.suggest_next(state)
-        state[coord[0]][coord[1]].should eq(:unknown)
+        state[coord.x][coord.y].should eq(:unknown)
       end
     end
+
       
   end
 end

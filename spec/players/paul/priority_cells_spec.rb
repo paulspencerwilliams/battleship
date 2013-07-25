@@ -15,22 +15,22 @@ describe PriorityCells do
       context "and all neighbours are unknown" do
         it "should add northern neighbour to stack" do
           stack.should_receive(:push).with([5,4])
-          subject.add_hit(Coord.new(5,5), state)
+          subject.add_hit(Suggestion.new(5,5), state)
         end
 
         it "should add eastern neighbour to stack" do
           stack.should_receive(:push).with([6,5])
-          subject.add_hit(Coord.new(5,5), state)
+          subject.add_hit(Suggestion.new(5,5), state)
         end
 
         it "should add southern neighbour to stack" do
           stack.should_receive(:push).with([5,6])
-          subject.add_hit(Coord.new(5,5), state)
+          subject.add_hit(Suggestion.new(5,5), state)
         end
 
         it "should add western neighbour to stack" do
           stack.should_receive(:push).with([4,5])
-          subject.add_hit(Coord.new(5,5), state)
+          subject.add_hit(Suggestion.new(5,5), state)
         end
 
       end
@@ -38,19 +38,19 @@ describe PriorityCells do
     context "on a boundary" do
       it "should not suggest out of northern boundary" do
         stack.should_not_receive(:push).with([5,-1])
-        subject.add_hit(Coord.new(5,0), state)
+        subject.add_hit(Suggestion.new(5,0), state)
       end
       it "should not suggest out of eastern boundary" do
         stack.should_not_receive(:push).with([10,5])
-        subject.add_hit(Coord.new(9,5), state)
+        subject.add_hit(Suggestion.new(9,5), state)
       end
       it "should not suggest out of southern boundary" do
         stack.should_not_receive(:push).with([5,10])
-        subject.add_hit(Coord.new(5,9), state)
+        subject.add_hit(Suggestion.new(5,9), state)
       end
       it "should not suggest out of western boundary" do
         stack.should_not_receive(:push).with([-1,5])
-        subject.add_hit(Coord.new(0,5), state)
+        subject.add_hit(Suggestion.new(0,5), state)
       end
     end 
     context "when neighbour is hit" do
@@ -62,19 +62,19 @@ describe PriorityCells do
       end
       it "should not add a northern neighbour that's already hit" do
         stack.should_not_receive(:push).with([5,4])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a eastern neighbour that's already hit" do
         stack.should_not_receive(:push).with([6,5])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a southern neighbour that's already hit" do
         stack.should_not_receive(:push).with([5,6])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a western neighbour that's already hit" do
         stack.should_not_receive(:push).with([4,5])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
     end
     context "when neighbour is miss" do
@@ -86,19 +86,19 @@ describe PriorityCells do
       end
       it "should not add a northern neighbour that's already hit" do
         stack.should_not_receive(:push).with([5,4])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a eastern neighbour that's already hit" do
         stack.should_not_receive(:push).with([6,5])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a southern neighbour that's already hit" do
         stack.should_not_receive(:push).with([5,6])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
       it "should not add a western neighbour that's already hit" do
         stack.should_not_receive(:push).with([4,5])
-        subject.add_hit(Coord.new(5,5), state)
+        subject.add_hit(Suggestion.new(5,5), state)
       end
     end
   end

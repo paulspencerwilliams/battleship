@@ -3,7 +3,7 @@ class Randomizer
     x = rand(10) 
     y = rand(10)
     if state[x][y] == :unknown
-      [x,y]
+      Suggestion.new(x,y)
     else
       suggest_next(state)
     end 
