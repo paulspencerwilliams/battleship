@@ -20,9 +20,14 @@ class PriorityCells
   end
 
   def suggest_next
-    @stack.pop
+    coord =  @stack.pop
+    if coord.nil?
+      nil
+    else
+      Suggestion.new(coord[0],coord[1])
+    end
   end
-  
+
   private :add_coord_to_stack
 
 end

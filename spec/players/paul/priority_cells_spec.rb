@@ -105,8 +105,11 @@ describe PriorityCells do
   describe "when asked to suggest next" do
     context "and there are suggestions" do
       let (:suggestion) {double("suggestion")}
+      let (:coord) {[3,5]}
+
       it "should return top of suggestion stack" do
-        stack.stub(:pop).and_return(suggestion)
+        stack.stub(:pop).and_return(coord)
+        Suggestion.stub(:new).with(3,5).and_return(suggestion)
         subject.suggest_next.should eq(suggestion)
       end
     end
