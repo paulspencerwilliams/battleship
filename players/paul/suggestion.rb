@@ -6,6 +6,10 @@ class Suggestion
     @y = y
     @coord = [x,y]
   end
+
+  def hit?(state)
+    state[x][y] == :hit
+  end
 end
 
 
