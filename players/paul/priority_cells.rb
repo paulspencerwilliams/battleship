@@ -13,7 +13,7 @@ class PriorityCells
 
   def add_coord_to_stack(x,y, state)
     if x >= 0 && x <= 9 && y >= 0 && y <= 9 
-      if state[x][y] == :unknown
+      if state[y][x] == :unknown
         @stack.push([x, y])
       end
     end
