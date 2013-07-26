@@ -19,19 +19,19 @@ describe Suggestion do
   describe "when asked whether it hit on a given board state" do
     context "and it was a hit" do
       it "should return true" do
-        state[4][7] = :hit
+        state[7][4] = :hit
         subject.hit?(state).should be_true
       end
     end
     context "and it was a miss" do
       it "should return false" do
-        state[4][7] = :miss
+        state[7][4] = :miss
         subject.hit?(state).should be_false
       end
     end
     context "and it was unknown" do
       it "should return false" do
-        state[4][7] = :unknown
+        state[7][4] = :unknown
         subject.hit?(state).should be_false
       end
     end
