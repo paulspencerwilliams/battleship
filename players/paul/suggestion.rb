@@ -8,7 +8,7 @@ class Suggestion
   end
 
   def hit?(state)
-    state[x][y] == :hit
+    state[y][x] == :hit
   end
 end
 
