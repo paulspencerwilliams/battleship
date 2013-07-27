@@ -14,23 +14,23 @@ describe PriorityCells do
     context "in the middle of the board" do
       context "and all neighbours are unknown" do
         it "should add northern neighbour to stack" do
-          stack.should_receive(:push).with([5,4])
-          subject.add_hit(Suggestion.new(5,5), state)
+          stack.should_receive(:push).with([2,8])
+          subject.add_hit(Suggestion.new(2,7), state)
         end
 
         it "should add eastern neighbour to stack" do
-          stack.should_receive(:push).with([6,5])
-          subject.add_hit(Suggestion.new(5,5), state)
+          stack.should_receive(:push).with([3,7])
+          subject.add_hit(Suggestion.new(2,7), state)
         end
 
         it "should add southern neighbour to stack" do
-          stack.should_receive(:push).with([5,6])
-          subject.add_hit(Suggestion.new(5,5), state)
+          stack.should_receive(:push).with([2,8])
+          subject.add_hit(Suggestion.new(2,7), state)
         end
 
         it "should add western neighbour to stack" do
-          stack.should_receive(:push).with([4,5])
-          subject.add_hit(Suggestion.new(5,5), state)
+          stack.should_receive(:push).with([1,7])
+          subject.add_hit(Suggestion.new(2,7), state)
         end
 
       end
@@ -55,50 +55,50 @@ describe PriorityCells do
     end 
     context "when neighbour is hit" do
       before (:each) do
-        state[5][4] = :hit
-        state[6][5] = :hit
-        state[5][6] = :hit
-        state[4][5] = :hit
+        state[6][2] = :hit
+        state[7][3] = :hit
+        state[8][2] = :hit
+        state[7][1] = :hit
       end
       it "should not add a northern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([5,4])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([2,6])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a eastern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([6,5])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([3,7])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a southern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([5,6])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([2,8])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a western neighbour that's already hit" do
-        stack.should_not_receive(:push).with([4,5])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([1,7])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
     end
     context "when neighbour is miss" do
       before (:each) do
-        state[5][4] = :miss
-        state[6][5] = :miss
-        state[5][6] = :miss
-        state[4][5] = :miss
+        state[6][2] = :miss
+        state[7][3] = :miss
+        state[8][2] = :miss
+        state[7][1] = :miss
       end
       it "should not add a northern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([5,4])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([2,6])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a eastern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([6,5])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([3,7])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a southern neighbour that's already hit" do
-        stack.should_not_receive(:push).with([5,6])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([2,8])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
       it "should not add a western neighbour that's already hit" do
-        stack.should_not_receive(:push).with([4,5])
-        subject.add_hit(Suggestion.new(5,5), state)
+        stack.should_not_receive(:push).with([1,7])
+        subject.add_hit(Suggestion.new(2,7), state)
       end
     end
   end
